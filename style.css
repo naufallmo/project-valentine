@@ -122,6 +122,35 @@ button {
   margin-bottom: 50px;
 }
 
+.love-container {
+  margin: 30px auto;
+  text-align: center;
+  width: 300px;
+}
+
+.love-bar {
+  width: 100%;
+  height: 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.love-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff4e8a, #ff1e62);
+  border-radius: 20px;
+  transition: width 0.2s ease;
+}
+
+#lovePercent {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

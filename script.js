@@ -152,7 +152,22 @@ function drawHeart() {
 
 drawHeart();
 
-drawHeart();
+function animateLove() {
+  let percent = 0;
+  const fill = document.getElementById("loveFill");
+  const text = document.getElementById("lovePercent");
+
+  const interval = setInterval(() => {
+    if (percent >= 100) {
+      clearInterval(interval);
+    } else {
+      percent++;
+      fill.style.width = percent + "%";
+      text.textContent = percent + "%";
+    }
+  }, 30);
+}
+animateLove();
 
 const openLetterBtn = document.getElementById('openLetterBtn');
 const closeLetterBtn = document.getElementById('closeLetterBtn');
