@@ -140,7 +140,7 @@ function drawHeart() {
   ctx.restore();
   
   if (isDrawing && drawProgress < 1) {
-    drawProgress += 0.002;
+    drawProgress += 0.003;
   } else if (drawProgress >= 1) {
     isDrawing = false;
     scale = 8 + Math.sin(angle) * 0.5;
