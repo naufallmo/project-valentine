@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/icon3.png" type="image/jpeg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+  
+  <section class="intro" id="intro">
+    <img src="images/her.jpeg" alt="us">
+    <h2>Untuk kamu</h2>
+    <p>Happy Valentine's Day!</p>
+  </section>
+
+  <section class="question" id="question">
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+      <button id="yes">Yes 💕</button>
+      <button id="no">No</button>
+    </div>
+    <p id="tease"></p>
+  </section>
+
+  <section class="result hidden" id="result">
+    <h1>Yeyy! 🎉</h1>
+    <p>Yahaha gabisa nolak ajakan aku ya 😎</p>
+
+    <div class="gallery">
+      <img src="images/pwa.jpeg" alt="us">
+      <img src="images/atCafe.jpeg" alt="us">
+      <img src="images/greas.jpeg" alt="us">
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-section">
+      <h2>Our Anniversary Countdown ❤️</h2>
+      <div class="countdown">
+        <div class="time-box">
+          <span class="number" id="days">0</span>
+          <span class="label">Hari</span>
+        </div>
+        <div class="time-box">
+          <span class="number" id="hours">0</span>
+          <span class="label">Jam</span>
+        </div>
+        <div class="time-box">
+          <span class="number" id="minutes">0</span>
+          <span class="label">Menit</span>
+        </div>
+        <div class="time-box">
+          <span class="number" id="seconds">0</span>
+          <span class="label">Detik</span>
+        </div>
+      </div>
+      <p class="countdown-text">Sebentar lagi anniversary kita! 💕</p>
+    </div>
+
+    <!-- Apa Kek -->
+    <div class="memories-section">
+      <h2>Our Little Moments 😊</h2>
+      <div class="memories">
+        <div class="memory-card">
+          <div class="memory-emoji">👥</div>
+          <h3>Mas Mba</h3>
+          <p>Dulu kita cuma mas sama mba biasa. Ga ada feeling aneh, ga ada firasat apa apa. Eh tau tau sekarang jadi sedeket ini. Plot twist terbaik sepanjang masa sih menurut aku.</p>
+        </div>
+        
+        <div class="memory-card">
+          <div class="memory-emoji">💐</div>
+          <h3>PWA</h3>
+          <p>Ini momen yang bikin aku senyum sendiri kalau keinget sih, aku seneng sekali bisa liat langsung keluarga kita bertemu dan berfoto,  Dan ini juga pertama kalinya aku kasih kamu bunga. kamu dapet dari aku dan bapak aku.</p>
+        </div>
+        
+        <div class="memory-card">
+          <div class="memory-emoji">🚂</div>
+          <h3>A Day in Pwt</h3>
+          <p>Ini chaos tapi seru. Tiba tiba nonton film tanpa rencana. Hampir telat masuk kereta. Terus malah kelewat stasiun yang harusnya turun di Gumilir. Panik iya, ketawa juga iya, tapi jujur, itu salah satu hari paling happy buat aku bareng kamu.</p>
+        </div>
+        
+      </div>
+    </div>
+
+    <p class="ending">
+      Terima kasih sudah hadir di hidupku.<br>
+      Aku harap ini bukan cuma hari ini saja.
+    </p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
