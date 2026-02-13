@@ -37,10 +37,14 @@ yesBtn.addEventListener('click', () => {
   window.scrollTo({ top: result.offsetTop, behavior: 'smooth' });
   
   startCountdown();
-
   playBackgroundMusic();
+  animateLove();
+  
+  drawProgress = 0;
+  isDrawing = true;
 });
 
+// Background Music
 function playBackgroundMusic() {
   const audio = new Audio();
   audio.src = 'music/penjagaHati.mp3';
@@ -53,6 +57,7 @@ function playBackgroundMusic() {
     }, { once: true });
   });
 }
+
 // Countdown Timer
 function startCountdown() {
   const anniversary = new Date('2026-03-05T00:00:00').getTime();
@@ -85,7 +90,24 @@ function startCountdown() {
   setInterval(updateCountdown, 1000);
 }
 
-// Background hati
+// Love Level Animation
+function animateLove() {
+  let percent = 0;
+  const fill = document.getElementById("loveFill");
+  const text = document.getElementById("lovePercent");
+
+  const interval = setInterval(() => {
+    if (percent >= 100) {
+      clearInterval(interval);
+    } else {
+      percent++;
+      fill.style.width = percent + "%";
+      text.textContent = percent + "%";
+    }
+  }, 30);
+}
+
+// Background Heart Canvas
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -104,9 +126,14 @@ let isDrawing = true;
 
 function drawHeart() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
   ctx.save();
   ctx.translate(canvas.width / 2, canvas.height / 2);
+  
+  if (drawProgress >= 1) {
+    scale = 8 + Math.sin(angle) * 0.5;
+    angle += 0.03;
+  }
+  
   ctx.scale(scale, -scale);
   
   const points = [];
@@ -117,17 +144,25 @@ function drawHeart() {
   }
   
   ctx.beginPath();
-  const pointsToDraw = Math.floor(points.length * drawProgress);
   
-  for (let i = 0; i < pointsToDraw; i++) {
-    if (i === 0) {
-      ctx.moveTo(points[i].x, points[i].y);
-    } else {
-      ctx.lineTo(points[i].x, points[i].y);
+  if (drawProgress < 1) {
+    const pointsToDraw = Math.floor(points.length * drawProgress);
+    for (let i = 0; i < pointsToDraw; i++) {
+      if (i === 0) {
+        ctx.moveTo(points[i].x, points[i].y);
+      } else {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
     }
-  }
-  
-  if (drawProgress >= 1) {
+    drawProgress += 0.003;
+  } else {
+    for (let i = 0; i < points.length; i++) {
+      if (i === 0) {
+        ctx.moveTo(points[i].x, points[i].y);
+      } else {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+    }
     ctx.closePath();
   }
   
@@ -139,36 +174,12 @@ function drawHeart() {
   
   ctx.restore();
   
-  if (isDrawing && drawProgress < 1) {
-    drawProgress += 0.003;
-  } else if (drawProgress >= 1) {
-    isDrawing = false;
-    scale = 8 + Math.sin(angle) * 0.5;
-    angle += 0.03;
-  }
-  
   requestAnimationFrame(drawHeart);
 }
 
 drawHeart();
 
-function animateLove() {
-  let percent = 0;
-  const fill = document.getElementById("loveFill");
-  const text = document.getElementById("lovePercent");
-
-  const interval = setInterval(() => {
-    if (percent >= 100) {
-      clearInterval(interval);
-    } else {
-      percent++;
-      fill.style.width = percent + "%";
-      text.textContent = percent + "%";
-    }
-  }, 30);
-}
-animateLove();
-
+// Love Letter Popup
 const openLetterBtn = document.getElementById('openLetterBtn');
 const closeLetterBtn = document.getElementById('closeLetterBtn');
 const letterOverlay = document.getElementById('letterOverlay');
