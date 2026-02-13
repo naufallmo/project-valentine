@@ -5,7 +5,7 @@ const question = document.getElementById('question');
 const result = document.getElementById('result');
 
 let yesSize = 18;
-const texts = ["yakin?", "masa iya?", "aku tunggu loh"];
+const texts = ["yakin?", "beneran?", "aku tunggu loh"];
 let textIndex = 0;
 
 // No button - Run
