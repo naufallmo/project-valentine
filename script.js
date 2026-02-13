@@ -5,7 +5,7 @@ const question = document.getElementById('question');
 const result = document.getElementById('result');
 
 let yesSize = 18;
-const texts = ["yakin?", "beneran?", "aku tunggu loh"];
+const texts = ["yakin?", "masa iya?", "aku tunggu loh"];
 let textIndex = 0;
 
 // No button - Run
@@ -179,14 +179,26 @@ function drawHeart() {
 
 drawHeart();
 
-// Love Letter Popup
 const openLetterBtn = document.getElementById('openLetterBtn');
 const closeLetterBtn = document.getElementById('closeLetterBtn');
 const letterOverlay = document.getElementById('letterOverlay');
 
+// Password: Tanggal Jadian (05032023 or 5 Maret 2023)
+const correctPassword = '050323'; // Format: DDMMYY
+
 openLetterBtn.addEventListener('click', () => {
-  letterOverlay.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
+  const userPassword = prompt('🔐 Masukkan password:\n(Hint: Dimana semua berawal, format: DDMMYY)');
+  
+  if (userPassword === null) {
+    return;
+  }
+  
+  if (userPassword === correctPassword) {
+    letterOverlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  } else {
+    alert('❌ Password salah! Coba lagi ya 😊\n\nHint: Dimana semua berawal (DDMMYY)');
+  }
 });
 
 closeLetterBtn.addEventListener('click', () => {
