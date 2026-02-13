@@ -99,6 +99,8 @@ window.addEventListener('resize', () => {
 
 let scale = 8;
 let angle = 0;
+let drawProgress = 0;
+let isDrawing = true;
 
 function drawHeart() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -107,27 +109,75 @@ function drawHeart() {
   ctx.translate(canvas.width / 2, canvas.height / 2);
   ctx.scale(scale, -scale);
   
-  ctx.beginPath();
+  const points = [];
   for (let t = 0; t <= Math.PI * 2; t += 0.01) {
     const x = 16 * Math.pow(Math.sin(t), 3);
     const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-    
-    if (t === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
+    points.push({ x, y });
   }
   
-  ctx.closePath();
-  ctx.strokeStyle = 'rgba(255, 50, 120, 0.5)';
+  ctx.beginPath();
+  const pointsToDraw = Math.floor(points.length * drawProgress);
+  
+  for (let i = 0; i < pointsToDraw; i++) {
+    if (i === 0) {
+      ctx.moveTo(points[i].x, points[i].y);
+    } else {
+      ctx.lineTo(points[i].x, points[i].y);
+    }
+  }
+  
+  if (drawProgress >= 1) {
+    ctx.closePath();
+  }
+  
+  ctx.strokeStyle = 'rgba(255, 50, 120, 0.6)';
   ctx.lineWidth = 0.3;
-  ctx.shadowBlur = 15;
+  ctx.shadowBlur = 20;
   ctx.shadowColor = '#ff2e63';
   ctx.stroke();
+  
   ctx.restore();
   
-  scale = 8 + Math.sin(angle) * 0.5;
-  angle += 0.03;
+  if (isDrawing && drawProgress < 1) {
+    drawProgress += 0.002;
+  } else if (drawProgress >= 1) {
+    isDrawing = false;
+    scale = 8 + Math.sin(angle) * 0.5;
+    angle += 0.03;
+  }
   
   requestAnimationFrame(drawHeart);
 }
 
 drawHeart();
+
+drawHeart();
+
+const openLetterBtn = document.getElementById('openLetterBtn');
+const closeLetterBtn = document.getElementById('closeLetterBtn');
+const letterOverlay = document.getElementById('letterOverlay');
+
+openLetterBtn.addEventListener('click', () => {
+  letterOverlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+});
+
+closeLetterBtn.addEventListener('click', () => {
+  letterOverlay.classList.add('hidden');
+  document.body.style.overflow = 'auto';
+});
+
+letterOverlay.addEventListener('click', (e) => {
+  if (e.target === letterOverlay) {
+    letterOverlay.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !letterOverlay.classList.contains('hidden')) {
+    letterOverlay.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+});
