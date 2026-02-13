@@ -37,8 +37,22 @@ yesBtn.addEventListener('click', () => {
   window.scrollTo({ top: result.offsetTop, behavior: 'smooth' });
   
   startCountdown();
+
+  playBackgroundMusic();
 });
 
+function playBackgroundMusic() {
+  const audio = new Audio();
+  audio.src = 'music/penjagaHati.mp3';
+  audio.volume = 0.4;
+  audio.loop = true;
+
+  audio.play().catch(() => {
+    document.body.addEventListener('click', () => {
+      audio.play();
+    }, { once: true });
+  });
+}
 // Countdown Timer
 function startCountdown() {
   const anniversary = new Date('2026-03-05T00:00:00').getTime();
