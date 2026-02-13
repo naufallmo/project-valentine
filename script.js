@@ -197,7 +197,7 @@ openLetterBtn.addEventListener('click', () => {
     letterOverlay.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   } else {
-    alert('❌ Password salah! Coba lagi ya 😊\n\nHint: Dimana semua berawal (DDMMYY)');
+    alert('❌ No noo password salah! Coba lagi ya 😊\n\nHint: Dimana semua berawal (DDMMYY)');
   }
 });
 
